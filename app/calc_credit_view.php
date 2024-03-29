@@ -1,11 +1,16 @@
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pl" lang="pl">
 <head>
-<meta charset="utf-8" />
-<title>Kalkulator</title>
+    <meta charset="utf-8" />
+    <title>Kalkulator</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 </head>
 <body>
 
+<div style="width:90%; margin: 2em auto;">
+	<a href="<?php print(_APP_ROOT); ?>/app/security/logout.php" class="pure-button pure-button-active">Wyloguj</a>
+</div>
+    
 <form action="<?php print(_APP_URL);?>/app/calc_credit.php" method="post">
 	<label for="id_x">Kwota </label>
 	<input id="id_x" type="text" name="x" value="<?php if (isset($x)) print($x); ?>" /><br />
@@ -26,6 +31,9 @@ if (isset($messages)) {
 		}
 		echo '</ol>';
 	}
+        else{
+             echo $result;
+        }
 }
 ?>
 
