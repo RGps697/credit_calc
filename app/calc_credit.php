@@ -10,6 +10,8 @@ require_once dirname(__FILE__).'/../config.php';
 
 include _ROOT_PATH.'/app/security/check.php';
 
+$smarty = new Smarty();
+
 function getParams(&$x,&$y,&$z){
 	$x = isset($_REQUEST['x']) ? $_REQUEST['x'] : null;
 	$y = isset($_REQUEST['y']) ? $_REQUEST['y'] : null;
@@ -32,15 +34,12 @@ function validate(&$x,&$y,&$z,&$messages){
     // sprawdzenie, czy potrzebne wartości zostały przekazane
     if ( $x == "") {
         $messages [] = 'Nie podano kwoty';
-        return false;
     }
     if ( $y == "") {
         $messages [] = 'Nie podano miesięcy';
-        return false;
     }
     if ( $z == "") {
         $messages [] = 'Nie podano oprocentowania';
-        return false;
     }
 
     $x = intval($x);
@@ -49,17 +48,16 @@ function validate(&$x,&$y,&$z,&$messages){
 
     if ( $x <= 0) {
         $messages [] = 'Wartość kwoty musi być większa od 0';
-        return false;
     }
     if ( $y <= 0) {
         $messages [] = 'Wartość miesięcy musi być większa od 0';
-        return false;
     }
     if ( $z <= 0) {
         $messages [] = 'Wartość oprocentowania musi być większa od 0';
-        return false;
     }
     
+    if (count ( $messages ) > 0) return false;
+
     return true;
 }
 // 3. wykonaj zadanie jeśli wszystko w porządku
@@ -80,6 +78,15 @@ $messages = array();
 getParams($x,$y,$z);
 if ( validate($x,$y,$z,$messages) ) {
 	process($x,$y,$z,$messages,$result);
+        
 }
 
-include 'calc_credit_view.php';
+$smarty->assign('app_url',_APP_URL);
+$smarty->assign('root_path',_ROOT_PATH);
+$smarty->assign('result', $result);
+$smarty->assign('x', $x);
+$smarty->assign('y', $y);
+$smarty->assign('z', $z);
+$smarty->assign('messages',$messages);
+
+$smarty->display(_ROOT_PATH.'\app\calc_credit_view.tpl');    

@@ -1,6 +1,8 @@
 <?php
 require_once dirname(__FILE__).'/../../config.php';
 
+require_once _ROOT_PATH.'/smarty-4.5.2/libs/smarty.class.php';
+
 //pobranie parametrów
 function getParamsLogin(&$form){
 	$form['login'] = isset ($_REQUEST ['login']) ? $_REQUEST ['login'] : null;
@@ -42,7 +44,19 @@ $messages = array();
 getParamsLogin($form);
 
 if (!validateLogin($form,$messages)) {
-	include _ROOT_PATH.'/app/security/login_view.php';
+    $smarty = new Smarty();
+
+    $smarty->assign('app_url',_APP_URL);
+    $smarty->assign('root_path',_ROOT_PATH);
+
+    $smarty->assign('login',$form['login']);
+    $smarty->assign('password',$form['pass']);
+    $smarty->assign('messages',$messages);
+
+
+    $smarty->display(_ROOT_PATH.'\app\security\login_view.tpl');    
 } else { 
 	header("Location: "._APP_URL);
 }
+
+
