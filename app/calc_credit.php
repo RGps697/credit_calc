@@ -8,6 +8,14 @@ require_once dirname(__FILE__).'/../config.php';
 
 // 1. pobranie parametrów
 
+include $conf->root_path.'/app/security/check.php';
+
+require_once $conf->root_path.'/app/CalcCtrl.class.php';
+
+$ctrl = new CalcCtrl();
+$ctrl->process();
+
+/*
 include _ROOT_PATH.'/app/security/check.php';
 
 $smarty = new Smarty();
@@ -90,3 +98,4 @@ $smarty->assign('z', $z);
 $smarty->assign('messages',$messages);
 
 $smarty->display(_ROOT_PATH.'\app\calc_credit_view.tpl');    
+*/
