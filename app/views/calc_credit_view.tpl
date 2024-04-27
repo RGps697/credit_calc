@@ -1,4 +1,4 @@
-{extends file="../templates/mainPage.tpl"}
+{extends file="mainPage.tpl"}
 
 {block name=content}
 
@@ -30,17 +30,17 @@
 </form>	
 
 <table>
-{foreach $messages as $message}
+{foreach $msgs as $message}
 {strip}
    <tr bgcolor="{cycle values="#aaaaaa,#bbbbbb"}">
       <td>{$message}</td>
    </tr>
 {/strip}
 {/foreach}
-    
-{if $messages->isError()}
+
+{if $msgs->isError()}
     <h4>Wystąpiły błędy: </h4>
-    {foreach $messages->getErrors() as $err}
+    {foreach $msgs->getErrors() as $err}
     {strip}
     <tr bgcolor="{cycle values="#aaaaaa,#bbbbbb"}">
         <td>{$err}</td>
@@ -48,7 +48,6 @@
     {/strip}
     {/foreach}
 {/if}
-    
 
 </table>
 </div>

@@ -1,12 +1,12 @@
 <?php
 
 
-require_once $conf->root_path.'/smarty-4.5.2/libs/smarty.class.php';
-require_once $conf->root_path.'/app/Messages.class.php';
-require_once $conf->root_path.'/app/CalcForm.class.php';
-require_once $conf->root_path.'/app/CalcResult.class.php';
+//require_once $conf->root_path.'/smarty-4.5.2/libs/smarty.class.php';
+//require_once $conf->root_path.'/app/Messages.class.php';
+require_once $conf->root_path.'/app/controllers/CalcForm.class.php';
+require_once $conf->root_path.'/app/controllers/CalcResult.class.php';
 
-include $conf->root_path.'/app/security/check.php';
+//include $conf->root_path.'/app/security/check.php';
 
 class CalcCtrl {
     
@@ -15,9 +15,9 @@ class CalcCtrl {
     private $result;
 
     public function __construct(){
-        $this->form = new CalcForm();
+        $this->form = new app\forms\CalcForm();
         $this->result = new CalcResult();
-        $this->msgs = new Messages();
+        //$this->msgs = new Messages();
         
     }
     
@@ -42,13 +42,13 @@ class CalcCtrl {
 
         // sprawdzenie, czy potrzebne wartości zostały przekazane
         if ( $x == "") {
-            $this->msgs->addError('Nie podano kwoty');
+           getMessages()->addError('Nie podano kwoty');
         }
         if ( $y == "") {
-            $this->msgs->addError('Nie podano miesięcy');
+            getMessages()->addError('Nie podano miesięcy');
         }
         if ( $z == "") {
-            $this->msgs->addError('Nie podano oprocentowania');
+            getMessages()->addError('Nie podano oprocentowania');
         }
 
         $x = intval($x);
@@ -56,16 +56,16 @@ class CalcCtrl {
         $z = intval($z);
 
         if ( $x <= 0) {
-            $this->msgs->addError('Wartość kwoty musi być większa od 0');
+            getMessages()->addError('Wartość kwoty musi być większa od 0');
         }
         if ( $y <= 0) {
-            $this->msgs->addError('Wartość miesięcy musi być większa od 0');
+            getMessages()->addError('Wartość miesięcy musi być większa od 0');
         }
         if ( $z <= 0) {
-            $this->msgs->addError('Wartość oprocentowania musi być większa od 0');
+            getMessages()->addError('Wartość oprocentowania musi być większa od 0');
         }
 
-        if (!$this->msgs->isError()) return true;
+        if (!getMessages()->isError()) return true;
 
         return false;
     }
@@ -92,16 +92,16 @@ class CalcCtrl {
 
 
     public function generateView(){
-        global $conf;
+        //global $conf;
         
-        $smarty = new Smarty();
-        $smarty->assign('conf',$conf);
+        //$smarty = new Smarty();
+        //$smarty->assign('conf',$conf);
                 
-        $smarty->assign('result', $this->result);
-        $smarty->assign('form',$this->form);
-        $smarty->assign('messages',$this->msgs);
+        getSmarty()->assign('result', $this->result);
+        getSmarty()->assign('form',$this->form);
+        //getSmarty()->assign('messages',getMessages()->msgs);
 
-        $smarty->display($conf->root_path.'\app\calc_credit_view.tpl');
+        getSmarty()->display(getConf()->root_path.'\app\views\calc_credit_view.tpl');
     }
 
 }

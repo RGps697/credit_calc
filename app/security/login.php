@@ -1,7 +1,7 @@
 <?php
-require_once dirname(__FILE__).'/../../config.php';
+//require_once dirname(__FILE__).'/../../config.php';
 
-require_once $conf->root_path.'/smarty-4.5.2/libs/smarty.class.php';
+//require_once $conf->root_path.'/smarty-4.5.2/libs/smarty.class.php';
 
 //pobranie parametrów
 function getParamsLogin(&$form){
@@ -55,7 +55,7 @@ if (!validateLogin($form,$messages)) {
     $smarty->assign('messages',$messages);
 
 
-    $smarty->display($conf->root_path.'\app\security\login_view.tpl');    
+    $smarty->display($conf->root_path.'\app\views\login_view.tpl');    
 } else { 
     header("Location: ".$conf->app_url);
 }

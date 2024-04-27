@@ -3,19 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/H:/US/Stopien_2/2_semestr/AA/projekty/zad01_calc/ctrl.php</file>
+            <file>file:/H:/US/Stopien_2/2_semestr/AA/projekty/zad01_calc/app/views/templates/mainPage.tpl</file>
             <file>file:/H:/US/Stopien_2/2_semestr/AA/projekty/zad01_calc/config.php</file>
-            <file>file:/H:/US/Stopien_2/2_semestr/AA/projekty/zad01_calc/app/calc_credit_view.tpl</file>
-            <file>file:/H:/US/Stopien_2/2_semestr/AA/projekty/zad01_calc/app/CalcCtrl.class.php</file>
+            <file>file:/H:/US/Stopien_2/2_semestr/AA/projekty/zad01_calc/app/views/login_view.tpl</file>
             <file>file:/H:/US/Stopien_2/2_semestr/AA/projekty/zad01_calc/app/security/login.php</file>
-            <file>file:/H:/US/Stopien_2/2_semestr/AA/projekty/zad01_calc/app/ctrl.php</file>
-            <file>file:/H:/US/Stopien_2/2_semestr/AA/projekty/zad01_calc/app/security/check.php</file>
             <file>file:/H:/US/Stopien_2/2_semestr/AA/projekty/zad01_calc/app/security/logout.php</file>
-            <file>file:/H:/US/Stopien_2/2_semestr/AA/projekty/zad01_calc/Config.class.php</file>
+            <file>file:/H:/US/Stopien_2/2_semestr/AA/projekty/zad01_calc/app/security/check.php</file>
+            <file>file:/H:/US/Stopien_2/2_semestr/AA/projekty/zad01_calc/app/views/calc_credit_view.tpl</file>
             <file>file:/H:/US/Stopien_2/2_semestr/AA/projekty/zad01_calc/app/calc_credit.php</file>
-            <file>file:/H:/US/Stopien_2/2_semestr/AA/projekty/zad01_calc/app/Messages.class.php</file>
-            <file>file:/H:/US/Stopien_2/2_semestr/AA/projekty/zad01_calc/app/security/login_view.tpl</file>
-            <file>file:/H:/US/Stopien_2/2_semestr/AA/projekty/zad01_calc/app/CalcResult.class.php</file>
-            <file>file:/H:/US/Stopien_2/2_semestr/AA/projekty/zad01_calc/app/CalcForm.class.php</file>
+            <file>file:/H:/US/Stopien_2/2_semestr/AA/projekty/zad01_calc/init.php</file>
+            <file>file:/H:/US/Stopien_2/2_semestr/AA/projekty/zad01_calc/core/Messages.class.php</file>
+            <file>file:/H:/US/Stopien_2/2_semestr/AA/projekty/zad01_calc/core/functions.php</file>
+            <file>file:/H:/US/Stopien_2/2_semestr/AA/projekty/zad01_calc/app/controllers/CalcCtrl.class.php</file>
             <file>file:/H:/US/Stopien_2/2_semestr/AA/projekty/zad01_calc/index.php</file>
         </group>
     </open-files>
