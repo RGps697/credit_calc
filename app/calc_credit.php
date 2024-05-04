@@ -13,7 +13,7 @@ include $conf->root_path.'/app/security/check.php';
 require_once $conf->root_path.'/app/CalcCtrl.class.php';
 
 $ctrl = new CalcCtrl();
-$ctrl->process();
+$ctrl->action_calcCompute();
 
 /*
 include _ROOT_PATH.'/app/security/check.php';

@@ -17,7 +17,7 @@ class ClassLoader {
     }
     
     public function addPath($path){
-        $this->paths [] = $path;
+        $this->paths [] = $path;  
         if(count($this->paths)==1){
             spl_autoload_register(function($class){
                 $class = str_replace('\\', DIRECTORY_SEPARATOR, $class);

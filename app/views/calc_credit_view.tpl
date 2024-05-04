@@ -29,6 +29,8 @@
     </table>
 </form>	
 
+{include file='messages.tpl'}
+        
 <table>
 {foreach $msgs as $message}
 {strip}

@@ -1,10 +1,14 @@
 <?php
 
 
+namespace app\controllers;
+
 //require_once $conf->root_path.'/smarty-4.5.2/libs/smarty.class.php';
 //require_once $conf->root_path.'/app/Messages.class.php';
-require_once $conf->root_path.'/app/controllers/CalcForm.class.php';
-require_once $conf->root_path.'/app/controllers/CalcResult.class.php';
+use app\forms\CalcForm;
+use app\transfers\CalcResult;
+//require_once $conf->root_path.'/app/forms/CalcForm.class.php';
+//require_once $conf->root_path.'/app/transfers/CalcResult.class.php';
 
 //include $conf->root_path.'/app/security/check.php';
 
@@ -15,7 +19,7 @@ class CalcCtrl {
     private $result;
 
     public function __construct(){
-        $this->form = new app\forms\CalcForm();
+        $this->form = new CalcForm();
         $this->result = new CalcResult();
         //$this->msgs = new Messages();
         
@@ -71,7 +75,8 @@ class CalcCtrl {
     }
     // 3. wykonaj zadanie jeśli wszystko w porządku
 
-    public function process(){
+    public function action_calcCompute(){
+        
         $this->getParams();
         
         $this->form->x = intval($this->form->x);
@@ -89,6 +94,11 @@ class CalcCtrl {
         
         $this->generateView();
     }
+    
+    	public function action_calcShow(){
+		getMessages()->addInfo('Witaj w kalkulatorze');
+		$this->generateView();
+	}
 
 
     public function generateView(){
