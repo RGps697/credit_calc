@@ -17,6 +17,7 @@ class CalcCtrl {
     private $msgs;
     private $form;
     private $result;
+    private $data;
 
     public function __construct(){
         $this->form = new CalcForm();
@@ -90,15 +91,45 @@ class CalcCtrl {
             
                 $this->result->result = ($this->form->x / $this->form->y) * (1 + ($this->form->z / 100));
 
+            try {
+
+                $database = new \Medoo\Medoo([
+                    'database_type' => 'mysql',
+                    'database_name' => 'kalk',
+                    'server' => 'localhost',
+                    'username' => 'root',
+                    'password' => '',
+                    'charset' => 'utf8',
+                    'collation' => 'utf8_polish_ci',
+                    'option' => [
+                        \PDO::ATTR_CASE => \PDO::CASE_NATURAL,
+                        \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION
+                    ]
+                ]);
+
+                $database->insert("wyniki", [
+                    "kwota" => $this->form->x,
+                    "lat" => 10,
+                    "procent" => $this->form->y,
+                    "rata" => $this->result->result,
+                    "data" => date("Y-m-d H:i:s")
+                ]);
+
+            } catch (Exception $ex) {
+                getMessages()->addError("DB Error: ".$ex->getMessage());
+            }     
         }
         
+        
         $this->generateView();
+        
+        
     }
     
-    	public function action_calcShow(){
-		getMessages()->addInfo('Witaj w kalkulatorze');
-		$this->generateView();
-	}
+    public function action_calcShow(){
+            getMessages()->addInfo('Witaj w kalkulatorze');
+            $this->generateView();
+    }
 
 
     public function generateView(){
@@ -106,6 +137,36 @@ class CalcCtrl {
         
         //$smarty = new Smarty();
         //$smarty->assign('conf',$conf);
+        
+        try {
+            
+            $database = new \Medoo\Medoo([
+                'database_type' => 'mysql',
+                'database_name' => 'kalk',
+                'server' => 'localhost',
+                'username' => 'root',
+                'password' => '',
+                'charset' => 'utf8',
+                'collation' => 'utf8_polish_ci',
+                'option' => [
+                    \PDO::ATTR_CASE => \PDO::CASE_NATURAL,
+                    \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION
+                ]
+            ]);
+            
+            $this->data = $database->select("wyniki", [
+                "kwota",
+                "lat",
+                "procent",
+                "rata",
+                "data"
+            ]);
+            
+        } catch (Exception $ex) {
+            getMessages()->addError("DB Error: ".$ex->getMessage());
+        }
+        
+        getSmarty()->assign('historyData', $this->data);
                 
         getSmarty()->assign('result', $this->result);
         getSmarty()->assign('form',$this->form);

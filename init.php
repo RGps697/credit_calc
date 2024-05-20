@@ -10,6 +10,8 @@ function &getConf(){ global $conf; return $conf; }
 require_once getConf()->root_path.'/core/Messages.class.php';
 $msgs = new core\Messages();
 
+require_once 'libs/Medoo.php';
+
 function &getMessages(){ global $msgs; return $msgs; }
 
 $smarty = null;
